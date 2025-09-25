@@ -2,10 +2,12 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowRight, Shield, Database, Key, Coins, Users, FileText, Zap, CheckCircle } from 'lucide-react';
+import { ArrowRight, Shield, Database, Key, Coins, Users, FileText, Zap, CheckCircle, Wallet } from 'lucide-react';
 import { BlockchainBackground } from '@/components/ui/blockchain-bg';
+import { useWallet } from '@/contexts/WalletContext';
 
 export const LandingPage: React.FC = () => {
+  const { isConnected, connectWallet } = useWallet();
   const features = [
     {
       icon: Shield,
@@ -54,10 +56,6 @@ export const LandingPage: React.FC = () => {
             <a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a>
             <a href="#about" className="text-muted-foreground hover:text-foreground transition-colors">About</a>
             <a href="#contact" className="text-muted-foreground hover:text-foreground transition-colors">Contact</a>
-            <Button variant="outline" size="sm">Login</Button>
-            <Button size="sm" className="hedera-glow">
-              Sign Up <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
           </div>
         </div>
       </nav>
@@ -81,13 +79,17 @@ export const LandingPage: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-scale-in">
-            <Button size="lg" className="text-lg px-8 py-6 hedera-glow">
-              Get Started
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="text-lg px-8 py-6 hedera-glow" onClick={connectWallet}>
+              <Wallet className="mr-2 h-5 w-5" />
+              Launch App
             </Button>
-            <Button variant="outline" size="lg" className="text-lg px-8 py-6">
-              Learn More
-            </Button>
+            {isConnected && (
+              <Button variant="outline" size="lg" className="text-lg px-8 py-6" asChild>
+                <a href="/dashboard">
+                  View Dashboard <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+            )}
           </div>
         </div>
       </section>
@@ -186,9 +188,9 @@ export const LandingPage: React.FC = () => {
           </p>
           
           <div className="space-y-6">
-            <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-6 hedera-glow">
-              Get Started Today
-              <ArrowRight className="ml-2 h-5 w-5" />
+            <Button size="lg" className="w-full sm:w-auto text-lg px-8 py-6 hedera-glow" onClick={connectWallet}>
+              <Wallet className="mr-2 h-5 w-5" />
+              Launch App Today
             </Button>
             
             <p className="text-muted-foreground">

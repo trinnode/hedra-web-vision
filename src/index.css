@@ -51,6 +51,16 @@
     --node-secondary: 200 98% 46%;
     --particle-base: 0 0% 95%;
 
+    /* Status Colors */
+    --accent-success: 120 100% 40%;
+    --accent-success-foreground: 120 100% 95%;
+    --accent-warning: 45 100% 50%;
+    --accent-warning-foreground: 45 100% 10%;
+    --accent-info: 210 100% 50%;
+    --accent-info-foreground: 210 100% 95%;
+    --accent-purple: 270 100% 50%;
+    --accent-purple-foreground: 270 100% 95%;
+
     /* Depth & Shadows */
     --shadow-soft: 0 4px 6px -1px hsl(220 13% 13% / 0.1);
     --shadow-medium: 0 10px 15px -3px hsl(220 13% 13% / 0.1);
