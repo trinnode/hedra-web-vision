@@ -29,6 +29,11 @@ const navigationItems = [
   { title: 'Issue Access', url: '/issue-access', icon: Key },
   { title: 'Manage Consents', url: '/manage-consents', icon: Users },
   { title: 'Billing', url: '/billing', icon: CreditCard },
+  { title: 'Healthcare Billing', url: '/healthcare-billing', icon: CreditCard },
+  { title: 'Provider Dashboard', url: '/provider-dashboard', icon: Users },
+  { title: 'Upload Report', url: '/upload-report', icon: FileText },
+  { title: 'Automated Payments', url: '/automated-payments', icon: Zap },
+  { title: 'Top-up Wallet', url: '/topup-wallet', icon: CreditCard },
   { title: 'Settings', url: '/settings', icon: Settings },
 ];
 

@@ -4,6 +4,7 @@ import { AppSidebar } from '@/components/AppSidebar';
 import { useWallet } from '@/contexts/WalletContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { Bell, User, LogOut } from 'lucide-react';
 
 interface DashboardLayoutProps {
@@ -20,7 +21,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
         
         <div className="flex-1 flex flex-col">
           {/* Header */}
-          <header className="h-16 flex items-center justify-between px-6 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+          <header className="h-16 flex items-center justify-between px-4 lg:px-6 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
             <div className="flex items-center gap-4">
               <SidebarTrigger className="p-2" />
               <div className="hidden md:block">
@@ -30,26 +31,29 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) =>
             </div>
             
             <div className="flex items-center gap-4">
+              <ThemeToggle />
               <Button variant="ghost" size="sm">
                 <Bell className="h-4 w-4" />
               </Button>
               
               <div className="flex items-center gap-2">
-                <Badge variant="secondary" className="hidden sm:flex">
-                  {walletAddress}
+                <Badge variant="secondary" className="hidden sm:flex text-xs">
+                  {walletAddress ? `${walletAddress.slice(0, 6)}...${walletAddress.slice(-4)}` : 'Not Connected'}
                 </Badge>
                 <Button variant="ghost" size="sm">
                   <User className="h-4 w-4" />
                 </Button>
-                <Button variant="ghost" size="sm" onClick={disconnectWallet}>
-                  <LogOut className="h-4 w-4" />
-                </Button>
+                {walletAddress && (
+                  <Button variant="ghost" size="sm" onClick={disconnectWallet}>
+                    <LogOut className="h-4 w-4" />
+                  </Button>
+                )}
               </div>
             </div>
           </header>
 
           {/* Main Content */}
-          <main className="flex-1 p-6 overflow-auto">
+          <main className="flex-1 p-4 lg:p-6 overflow-auto">
             {children}
           </main>
         </div>
